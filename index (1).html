@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chirag Bhalla — Full-Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0D12;
+    --surface: #11161D;
+    --surface-hover: #161C25;
+    --border: #212832;
+    --text: #ECEFF3;
+    --text-dim: #838EA0;
+    --text-faint: #4E5766;
+    --accent: #35D68C;
+    --accent-dim: #1F7A4F;
+    --amber: #F0A93B;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-serif: 'Source Serif 4', Georgia, serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#000;}
+
+  .noise{
+    position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.025;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:10;
+    background:rgba(10,13,18,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width:920px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:var(--font-mono);font-size:12px;color:var(--text-dim);
+  }
+  .status-line{display:flex;align-items:center;gap:8px;}
+  .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:0.55;transform:scale(0.85);}
+  }
+  .topbar-nav{display:flex;gap:22px;}
+  .topbar-nav a{color:var(--text-dim);transition:color .2s;}
+  .topbar-nav a:hover{color:var(--accent);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:100px 0 80px;position:relative;}
+  .req-line{
+    font-family:var(--font-mono);font-size:12px;color:var(--text-faint);
+    margin-bottom:28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .req-line .method{color:var(--accent);}
+  .req-line .code{color:var(--amber);}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    line-height:1.03;
+    letter-spacing:-0.02em;
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{color:var(--accent);}
+  .hero .role{
+    font-family:var(--font-mono);
+    font-size:clamp(0.95rem,2vw,1.15rem);
+    color:var(--text-dim);
+    margin-bottom:30px;
+    max-width:560px;
+  }
+  .hero .role .pipe{color:var(--accent);}
+  .hero p.lede{
+    font-size:1.05rem;color:var(--text-dim);max-width:580px;margin-bottom:38px;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;
+    padding:11px 20px;border-radius:6px;border:1px solid var(--border);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:all .2s ease;
+  }
+  .btn.primary{background:var(--accent);color:#06110B;border-color:var(--accent);font-weight:600;}
+  .btn.primary:hover{background:#4CE6A0;}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:var(--surface);}
+
+  .metrics{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  .metric{padding:22px 4px 22px 0;border-right:1px solid var(--border);}
+  .metric:last-child{border-right:none;}
+  .metric .num{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--text);}
+  .metric .num span{color:var(--accent);}
+  .metric .label{font-family:var(--font-mono);font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;}
+
+  /* ---------- SECTION HEADER ---------- */
+  section{padding:72px 0;border-bottom:1px solid var(--border);}
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:36px;
+  }
+  .sec-head .tag{
+    font-family:var(--font-mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:3px 9px;border-radius:4px;
+    white-space:nowrap;
+  }
+  .sec-head h2{font-family:var(--font-display);font-size:1.6rem;font-weight:600;}
+  .sec-head .rule{flex:1;height:1px;background:var(--border);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{
+    display:grid;grid-template-columns:150px 1fr;gap:24px;
+    padding:26px 0;border-top:1px solid var(--border);
+  }
+  .job:first-of-type{border-top:none;}
+  .job-meta{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);}
+  .job-meta .company{color:var(--text);font-weight:500;font-size:13px;display:block;margin-top:4px;}
+  .job-role{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:14px;}
+  .job ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .job li{
+    position:relative;padding-left:18px;color:var(--text-dim);font-size:0.94rem;
+  }
+  .job li::before{
+    content:'▸';position:absolute;left:0;color:var(--accent);font-size:12px;top:2px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:flex;flex-direction:column;gap:16px;}
+  .proj-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    padding:26px 28px;transition:border-color .2s, transform .2s;
+  }
+  .proj-card:hover{border-color:var(--accent-dim);transform:translateY(-2px);}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+  .proj-top h3{font-family:var(--font-display);font-size:1.2rem;font-weight:600;}
+  .proj-link{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);border:1px solid var(--border);padding:5px 10px;border-radius:5px;transition:.2s;}
+  .proj-link:hover{color:var(--accent);border-color:var(--accent-dim);}
+  .proj-card p{
+    font-family:var(--font-serif);
+    color:var(--text-dim);font-size:1.01rem;line-height:1.65;
+    margin:6px 0 14px;max-width:640px;
+  }
+  .proj-card p + p{margin-top:-4px;}
+  .proj-card code{
+    font-family:var(--font-mono);font-size:0.85em;color:var(--amber);
+    background:rgba(240,169,59,0.08);padding:1px 5px;border-radius:3px;
+  }
+  .stack{display:flex;flex-wrap:wrap;gap:7px;}
+  .stack span{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--amber);
+    background:rgba(240,169,59,0.08);border:1px solid rgba(240,169,59,0.2);
+    padding:3px 8px;border-radius:4px;
+  }
+  .repo-row{
+    display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:16px;
+    padding-top:14px;border-top:1px dashed var(--border);
+  }
+  .repo-row a{
+    font-family:var(--font-mono);font-size:11px;color:var(--text-faint);
+    display:flex;align-items:center;gap:5px;transition:color .2s;
+  }
+  .repo-row a::before{content:'↗';font-size:10px;}
+  .repo-row a:hover{color:var(--accent);}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;}
+  .skill-group .g-label{
+    font-family:var(--font-mono);font-size:11px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;
+  }
+  .g-items{display:flex;flex-wrap:wrap;gap:8px;}
+  .g-items span{
+    font-size:0.85rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);padding:6px 12px;border-radius:20px;
+  }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .ach-list{display:flex;flex-direction:column;}
+  .ach{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:18px 0;border-top:1px solid var(--border);flex-wrap:wrap;
+  }
+  .ach:first-child{border-top:none;}
+  .ach-left{display:flex;align-items:center;gap:14px;}
+  .ach-badge{
+    font-family:var(--font-mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:4px 9px;border-radius:4px;
+  }
+  .ach-text{color:var(--text-dim);font-size:0.93rem;}
+  .ach-text strong{color:var(--text);font-weight:600;}
+  .ach-link{font-family:var(--font-mono);font-size:11.5px;color:var(--text-faint);}
+  .ach-link:hover{color:var(--accent);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{border-bottom:none;text-align:left;}
+  .contact h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:20px;
+  }
+  .contact h2 .accent{color:var(--accent);}
+  .contact p{color:var(--text-dim);max-width:520px;margin-bottom:30px;}
+  footer{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--text-faint);
+    padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  footer a:hover{color:var(--accent);}
+
+  @media(max-width:640px){
+    .metrics{grid-template-columns:repeat(2,1fr);}
+    .metric:nth-child(2){border-right:none;}
+    .job{grid-template-columns:1fr;gap:8px;}
+    .skill-grid{grid-template-columns:1fr;}
+    .topbar-nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="status-line"><span class="dot"></span> chirag@systems — open to work</div>
+    <nav class="topbar-nav">
+      <a href="#work">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:none;padding-bottom:0;">
+    <div class="req-line">
+      <span class="method">GET</span> /chirag-bhalla <span class="code">200 OK</span> · 11ms · real-time systems engineer
+    </div>
+    <h1>Building systems<br>that respond <span class="accent">live.</span></h1>
+    <div class="role">Full-Stack Engineer <span class="pipe">/</span> Real-time Platforms <span class="pipe">/</span> Payments Infrastructure</div>
+    <p class="lede">
+      B.Tech ECE student at IIIT Ranchi who ships production backends — sockets that hold a connection,
+      APIs that don't fall over, and payment flows that reconcile down to the last rupee.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:chiragbhalla.dev@gmail.com">Email me →</a>
+      <a class="btn ghost" href="https://github.com/Bhallachirag" target="_blank">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/chirag-bhalla-892a91292" target="_blank">LinkedIn</a>
+      <a class="btn ghost" href="tel:+919140358239">+91 91403 58239</a>
+    </div>
+  </section>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">40<span>+</span></div><div class="label">REST APIs shipped</div></div>
+    <div class="metric"><div class="num">1000<span>+</span></div><div class="label">Payments processed</div></div>
+    <div class="metric"><div class="num">1869</div><div class="label">LeetCode rating</div></div>
+    <div class="metric"><div class="num">8.35</div><div class="label">CGPA / 10</div></div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="work">
+    <div class="sec-head">
+      <span class="tag">01</span>
+      <h2>Experience</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">
+        Sept 2025 – Feb 2026
+        <span class="company">BrahmShala</span>
+        <span style="color:var(--text-faint);font-size:11px;">Remote</span>
+      </div>
+      <div>
+        <div class="job-role">Software Engineering Intern</div>
+        <ul>
+          <li>Architected a real-time video/audio consultation platform on Agora SDK and Socket.io, with automated per-minute billing (₹5–15/min), typing indicators, and live chat sync.</li>
+          <li>Developed and optimized 40+ REST APIs with JWT authentication and role-based access control.</li>
+          <li>Integrated Razorpay with automated wallet management, processing 1000+ transactions and reconciling billing edge cases.</li>
+          <li>Built a dynamic pricing engine and optimized Prisma ORM queries with complex joins and pagination — cut retrieval time by 60%.</li>
+          <li>Designed interview scheduling with conflict resolution and real-time slot updates using Node.js and Express.js.</li>
+          <li>Built document verification workflows (Aadhaar, certificates) with structured approval and an admin dashboard.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head">
+      <span class="tag">02</span>
+      <h2>Projects</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>VaxFlow <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:4px;font-weight:400;vertical-align:middle;margin-left:8px;">5 microservices</span></h3>
+          <a class="proj-link" href="https://github.com/Bhallachirag/FinalFrontend" target="_blank">View repo ↗</a>
+        </div>
+        <p>Vaccine booking and inventory platform split into 5 independent microservices — Auth, Vaccine &amp; Search, Booking, Reminder, and an API Gateway — each with its own MySQL database via Sequelize, talking to each other over internal REST calls. The Gateway verifies every request against the Auth service before proxying it on, and applies rate limiting to protect downstream services.</p>
+        <p>The Booking service computes order cost with FIFO batch logic — it pulls all inventory batches for a vaccine, sorts by expiry date, and consumes the nearest-to-expire stock first, so pricing always reflects the batch actually being used. Checkout runs through a Razorpay payment link; a webhook confirms the payment, deducts inventory across every item in the cart, and triggers the Reminder service to email a confirmation. Frontend is React + Vite with Zustand stores for auth, cart, and vaccine state. Deployed on GCP.</p>
+        <div class="stack">
+          <span>Node.js</span><span>Express.js</span><span>Sequelize / MySQL</span><span>API Gateway</span><span>JWT</span><span>Razorpay</span><span>React + Zustand</span><span>GCP</span>
+        </div>
+        <div class="repo-row">
+          <a href="https://github.com/Bhallachirag/FinalFrontend" target="_blank">frontend</a>
+          <a href="https://github.com/Bhallachirag/API_Gateway" target="_blank">api-gateway</a>
+          <a href="https://github.com/Bhallachirag/Auth_Service" target="_blank">auth-service</a>
+          <a href="https://github.com/Bhallachirag/VaccineAndSearchService" target="_blank">vaccine-search-service</a>
+          <a href="https://github.com/Bhallachirag/VaccineBookingService" target="_blank">booking-service</a>
+          <a href="https://github.com/Bhallachirag/ReminderService" target="_blank">reminder-service</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>MicroGig Marketplace</h3>
+          <a class="proj-link" href="https://github.com/Bhallachirag/MicroGig" target="_blank">View repo ↗</a>
+        </div>
+        <p>MERN micro-internship marketplace where clients post gigs and freelancers apply with a bid, delivery time, and portfolio link. Job search supports category, skill, budget range, and duration filters with server-side pagination and sort-by-budget or sort-by-urgency.</p>
+        <p>Payments run escrow-style: a Razorpay order is only created once a job is marked <code>APPROVED</code> and <code>READY_FOR_RELEASE</code>, and the server independently re-verifies the payment using an HMAC-SHA256 signature check before releasing funds — so a tampered client response can't fake a payout. Reviews feed back into a running average rating recalculated on the user document after every submission. Also built an AI drafting assistant on Gemini that turns a freelancer's rough notes into a structured job title and description in one click.</p>
+        <div class="stack">
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB / Mongoose</span><span>Razorpay</span><span>Gemini API</span><span>Cloudinary</span><span>JWT</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>Hangman Game</h3>
+          <a class="proj-link" href="https://github.com/Bhallachirag/HangmanGame" target="_blank">View repo ↗</a>
+        </div>
+        <p>Classic Hangman built with React Router-driven flow — a start screen where the player sets a custom word or phrase (with a show/hide toggle since the word is entered by a second player), and a play screen with a masked-word display and an on-screen A–Z keyboard.</p>
+        <p>Guessed letters are tracked in state and colour-coded live — correct guesses turn green, wrong ones turn red and get disabled — while an SVG hangman figure builds up stroke by stroke with each wrong guess, driven off the same guess count as the rest of the game logic.</p>
+        <div class="stack">
+          <span>React</span><span>React Router</span><span>Tailwind CSS</span><span>Vite</span><span>SVG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head">
+      <span class="tag">03</span>
+      <h2>Skills</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="skill-grid">
+      <div class="skill-group">
+        <div class="g-label">Languages</div>
+        <div class="g-items"><span>Python</span><span>C/C++</span><span>SQL</span><span>JavaScript</span><span>HTML/CSS</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">Databases &amp; Cloud</div>
+        <div class="g-items"><span>PostgreSQL</span><span>MongoDB</span><span>MySQL</span><span>GCP</span><span>AWS</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">Frameworks &amp; Libraries</div>
+        <div class="g-items"><span>Node.js</span><span>Express.js</span><span>React.js</span><span>Prisma ORM</span><span>Socket.io</span><span>Tailwind CSS</span><span>EJS</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">Real-time &amp; APIs</div>
+        <div class="g-items"><span>Agora SDK</span><span>Socket.io</span><span>Razorpay</span><span>REST APIs</span><span>WebSockets</span><span>JWT</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">Developer Tools</div>
+        <div class="g-items"><span>Git</span><span>GitHub</span><span>Docker</span><span>VS Code</span><span>Postman</span><span>Vite</span><span>Vercel</span><span>Render</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">Core Subjects</div>
+        <div class="g-items"><span>DSA</span><span>DBMS</span><span>Computer Networks</span><span>OOPS</span><span>Operating Systems</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section>
+    <div class="sec-head">
+      <span class="tag">04</span>
+      <h2>Achievements</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="ach-list">
+      <div class="ach">
+        <div class="ach-left"><span class="ach-badge">Knight · 1869</span><span class="ach-text">Solved <strong>380+</strong> DSA problems on LeetCode</span></div>
+        <a class="ach-link" href="#" target="_blank">Profile ↗</a>
+      </div>
+      <div class="ach">
+        <div class="ach-left"><span class="ach-badge">Codolio</span><span class="ach-text">Solved <strong>700+</strong> DSA problems across LeetCode, Codeforces &amp; CodeChef</span></div>
+        <a class="ach-link" href="#" target="_blank">Profile ↗</a>
+      </div>
+      <div class="ach">
+        <div class="ach-left"><span class="ach-badge">Rank 10</span><span class="ach-text">IIIT Ranchi Intra-College Competitive Programming Contest <strong>(team of 3)</strong></span></div>
+      </div>
+      <div class="ach">
+        <div class="ach-left"><span class="ach-badge">Rank 2</span><span class="ach-text">IIIT Ranchi internal selection hackathon for <strong>SIH 2025</strong> — team lead</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Let's build<br>something <span class="accent">live.</span></h2>
+    <p>Open to internships and full-time roles in backend and full-stack engineering. Fastest way to reach me is email.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:chiragbhalla.dev@gmail.com">chiragbhalla.dev@gmail.com</a>
+      <a class="btn ghost" href="tel:+919140358239">+91 91403 58239</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Chirag Bhalla</div>
+    <div>IIIT Ranchi · ECE · 2023–2027</div>
+  </footer>
+
+</div>
+</body>
+</html>
