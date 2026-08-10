@@ -276,7 +276,7 @@
     <div class="metric"><div class="num">40<span>+</span></div><div class="label">REST APIs shipped</div></div>
     <div class="metric"><div class="num">1000<span>+</span></div><div class="label">Payments processed</div></div>
     <div class="metric"><div class="num">1869</div><div class="label">LeetCode rating</div></div>
-    <div class="metric"><div class="num">8.35</div><div class="label">CGPA / 10</div></div>
+    <div class="metric"><div class="num">8.46</div><div class="label">CGPA / 10</div></div>
   </div>
 
   <!-- EXPERIENCE -->
@@ -359,6 +359,21 @@
           <span>React</span><span>React Router</span><span>Tailwind CSS</span><span>Vite</span><span>SVG</span>
         </div>
       </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>AI Study Assistant</h3>
+          <div style="display:flex;gap:8px;">
+            <a class="proj-link" href="https://ai-study-assistant-nu-drab.vercel.app/" target="_blank" style="color:var(--accent);border-color:var(--accent-dim);">Live ↗</a>
+            <a class="proj-link" href="https://github.com/Bhallachirag/ai-study-assistant" target="_blank">View repo ↗</a>
+          </div>
+        </div>
+        <p>A RAG-based study app — upload PDFs and ask grounded questions about them instead of scrolling through pages. Uploaded PDFs are queued to a background worker (Redis + BullMQ) that chunks the text, generates embeddings with Gemini's <code>text-embedding-004</code>, and stores them in MongoDB Atlas Vector Search, keeping the upload request itself fast instead of blocking on processing.</p>
+        <p>A question gets embedded, matched against a user's own documents via vector similarity, and answered by Gemini 2.0 Flash through a LangChain retrieval chain, streamed back token-by-token with page-number citations pointing at the source PDF. On top of the core Q&amp;A, it can also turn a document into an AI-generated quiz with scoring, or flashcards that follow SM-2 spaced repetition — with a progress dashboard that tracks weak topics across everything a user has studied.</p>
+        <div class="stack">
+          <span>React</span><span>Node.js</span><span>Express.js</span><span>MongoDB Atlas Vector Search</span><span>LangChain</span><span>Gemini API</span><span>Redis / BullMQ</span><span>JWT</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -377,11 +392,15 @@
       </div>
       <div class="skill-group">
         <div class="g-label">Databases &amp; Cloud</div>
-        <div class="g-items"><span>PostgreSQL</span><span>MongoDB</span><span>MySQL</span><span>GCP</span><span>AWS</span></div>
+        <div class="g-items"><span>PostgreSQL</span><span>MongoDB</span><span>MongoDB Atlas Vector Search</span><span>MySQL</span><span>Redis</span><span>GCP</span><span>AWS</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="g-label">AI / RAG</div>
+        <div class="g-items"><span>LangChain</span><span>Google Gemini API</span><span>RAG Pipelines</span><span>Embeddings</span><span>Vector Search</span><span>BullMQ</span></div>
       </div>
       <div class="skill-group">
         <div class="g-label">Frameworks &amp; Libraries</div>
-        <div class="g-items"><span>Node.js</span><span>Express.js</span><span>React.js</span><span>Prisma ORM</span><span>Socket.io</span><span>Tailwind CSS</span><span>EJS</span></div>
+        <div class="g-items"><span>Node.js</span><span>Express.js</span><span>React.js</span><span>Prisma ORM</span><span>Mongoose</span><span>Socket.io</span><span>Tailwind CSS</span><span>EJS</span></div>
       </div>
       <div class="skill-group">
         <div class="g-label">Real-time &amp; APIs</div>
@@ -407,7 +426,7 @@
     </div>
     <div class="ach-list">
       <div class="ach">
-        <div class="ach-left"><span class="ach-badge">Knight · 1869</span><span class="ach-text">Solved <strong>380+</strong> DSA problems on LeetCode</span></div>
+        <div class="ach-left"><span class="ach-badge">Knight · 1869</span><span class="ach-text">Solved <strong>400+</strong> DSA problems on LeetCode</span></div>
         <a class="ach-link" href="#" target="_blank">Profile ↗</a>
       </div>
       <div class="ach">
