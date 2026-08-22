@@ -175,15 +175,39 @@
   .proj-link.live-link:hover{
     background:var(--accent);color:#FFFFFF;
   }
-  .proj-card p{
-    font-family:var(--font-serif);
-    color:var(--text-dim);font-size:1.01rem;line-height:1.65;
-    margin:6px 0 14px;max-width:640px;
+  .proj-bullets{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin:14px 0 18px;
   }
-  .proj-card p + p{margin-top:-4px;}
-  .proj-card code{
-    font-family:var(--font-mono);font-size:0.85em;color:var(--amber);
-    background:var(--amber-bg);padding:1px 5px;border-radius:3px;
+  .proj-bullets li{
+    position:relative;
+    padding-left:18px;
+    color:var(--text-dim);
+    font-size:0.94rem;
+    line-height:1.55;
+  }
+  .proj-bullets li::before{
+    content:'▸';
+    position:absolute;
+    left:0;
+    color:var(--accent);
+    font-size:12px;
+    top:2px;
+  }
+  .proj-bullets code{
+    font-family:var(--font-mono);
+    font-size:0.85em;
+    color:var(--amber);
+    background:var(--amber-bg);
+    padding:1px 5px;
+    border-radius:3px;
+  }
+  .proj-bullets strong{
+    color:var(--text);
+    font-weight:600;
   }
   .stack{display:flex;flex-wrap:wrap;gap:7px;}
   .stack span{
@@ -267,6 +291,7 @@
       <a href="#projects">projects</a>
       <a href="#skills">skills</a>
       <a href="#contact">contact</a>
+      <a href="Chirag_Bhalla_Resume.pdf" target="_blank" style="color:var(--accent);font-weight:600;">resume ↗</a>
     </nav>
   </div>
 </div>
@@ -286,6 +311,7 @@
     </p>
     <div class="cta-row">
       <a class="btn primary" href="mailto:chiragbhalla.dev@gmail.com">Email me →</a>
+      <a class="btn ghost" href="Chirag_Bhalla_Resume.pdf" target="_blank" style="border-color:var(--accent);color:var(--accent);background:var(--accent-bg);font-weight:600;">📄 Resume / CV ↗</a>
       <a class="btn ghost" href="https://github.com/Bhallachirag" target="_blank">GitHub</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/chirag-bhalla-892a91292" target="_blank">LinkedIn</a>
       <a class="btn ghost" href="tel:+919140358239">+91 91403 58239</a>
@@ -314,14 +340,11 @@
         <span style="color:var(--text-faint);font-size:11px;">Remote</span>
       </div>
       <div>
-        <div class="job-role">Software Engineering Intern</div>
+        <div class="job-role">Software Engineer Intern</div>
         <ul>
-          <li>Architected a real-time video/audio consultation platform on Agora SDK and Socket.io, with automated per-minute billing, typing indicators, and live chat sync.</li>
-          <li>Developed and optimized 40+ REST APIs with JWT authentication and role-based access control.</li>
-          <li>Integrated Razorpay with automated wallet management, processing 1000+ transactions and reconciling billing edge cases.</li>
-          <li>Built a dynamic pricing engine and optimized Prisma ORM queries with complex joins and pagination — cut retrieval time by 25–40%.</li>
-          <li>Designed interview scheduling with conflict resolution and real-time slot updates using Node.js and Express.js, reducing scheduling conflicts by 70%.</li>
-          <li>Built document verification workflows (Aadhaar, certificates) supporting 4+ document types with structured approval and an admin dashboard.</li>
+          <li>Architected a real-time video/audio consultation platform using <strong>Socket.io</strong> and <strong>Agora SDK</strong> with per-minute billing, live chat, and a custom <strong>Interview Scheduling Engine</strong> that reduced scheduling conflicts by <strong>70%</strong>.</li>
+          <li>Engineered and optimized <strong>40+ REST APIs</strong> with JWT authentication and RBAC, leveraging <strong>Prisma ORM</strong> indexing and pagination to reduce database retrieval time by <strong>25–40%</strong>.</li>
+          <li>Integrated <strong>Razorpay</strong> with automated wallet management (<strong>1000+ transactions</strong>) and developed a role-based <strong>Document Verification System</strong> supporting 4+ document types with multi-stage approvals.</li>
         </ul>
       </div>
     </div>
@@ -344,10 +367,13 @@
             <a class="proj-link" href="https://github.com/Bhallachirag/FinalFrontend" target="_blank">View repo ↗</a>
           </div>
         </div>
-        <p>Vaccine booking and inventory platform split into 5 independent microservices — Auth, Vaccine &amp; Search, Booking, Reminder, and an API Gateway — each with its own MySQL database via Sequelize, talking to each other over internal REST calls. The Gateway verifies every request against the Auth service before proxying it on, and applies rate limiting to protect downstream services.</p>
-        <p>The Booking service computes order cost with FIFO batch logic — it pulls all inventory batches for a vaccine, sorts by expiry date, and consumes the nearest-to-expire stock first, so pricing always reflects the batch actually being used. Checkout runs through a Razorpay payment link; a webhook confirms the payment, deducts inventory across every item in the cart, and triggers the Reminder service to email a confirmation. Frontend is React + Vite with Zustand stores for auth, cart, and vaccine state. Deployed on GCP.</p>
+        <ul class="proj-bullets">
+          <li>Engineered a full-stack vaccine booking and inventory management system with <strong>5 microservices</strong> following <strong>Model-View-Controller (MVC)</strong> architecture to ensure separation of concerns.</li>
+          <li>Implemented inter-service communication and centralized request routing using an <strong>API Gateway</strong>, improving overall system modularity, maintainability, and end-to-end scalability.</li>
+          <li>Deployed the application on <strong>Google Cloud Platform (GCP)</strong> with persistent MySQL storage, achieving <strong>99.9% uptime</strong> and improving booking efficiency by <strong>30%</strong>.</li>
+        </ul>
         <div class="stack">
-          <span>Node.js</span><span>Express.js</span><span>Sequelize / MySQL</span><span>API Gateway</span><span>JWT</span><span>Razorpay</span><span>React + Zustand</span><span>GCP</span>
+          <span>MySQL</span><span>Express.js</span><span>React.js</span><span>Node.js</span><span>Razorpay</span><span>API Gateway</span><span>GCP</span>
         </div>
         <div class="repo-row">
           <a href="https://github.com/Bhallachirag/FinalFrontend" target="_blank">frontend</a>
@@ -367,25 +393,13 @@
             <a class="proj-link" href="https://github.com/Bhallachirag/MicroGig" target="_blank">View repo ↗</a>
           </div>
         </div>
-        <p>MERN micro-internship marketplace where clients post gigs and freelancers apply with a bid, delivery time, and portfolio link. Job search supports category, skill, budget range, and duration filters with server-side pagination and sort-by-budget or sort-by-urgency.</p>
-        <p>Payments run escrow-style: a Razorpay order is only created once a job is marked <code>APPROVED</code> and <code>READY_FOR_RELEASE</code>, and the server independently re-verifies the payment using an HMAC-SHA256 signature check before releasing funds — so a tampered client response can't fake a payout. Reviews feed back into a running average rating recalculated on the user document after every submission. Also built an AI drafting assistant on Gemini that turns a freelancer's rough notes into a structured job title and description in one click.</p>
+        <ul class="proj-bullets">
+          <li>Developed a full-stack micro-internship marketplace using <strong>React.js, Node.js, Express.js, and MongoDB</strong>, supporting user roles with secure authentication and <strong>15+ modular REST APIs</strong>.</li>
+          <li>Integrated <strong>Cloudinary</strong> for media asset management and <strong>Razorpay</strong> for escrow payment processing, while building responsive dashboards and workflow management modules.</li>
+          <li>Collaborated using <strong>Git &amp; GitHub</strong> across multiple feature branches, following scalable project architecture to deliver an interactive marketplace platform.</li>
+        </ul>
         <div class="stack">
-          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB / Mongoose</span><span>Razorpay</span><span>Gemini API</span><span>Cloudinary</span><span>JWT</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <h3>Hangman Game</h3>
-          <div class="proj-link-group">
-            <a class="proj-link live-link" href="https://hangmangame-phi.vercel.app/start" target="_blank">Live ↗</a>
-            <a class="proj-link" href="https://github.com/Bhallachirag/HangmanGame" target="_blank">View repo ↗</a>
-          </div>
-        </div>
-        <p>Classic Hangman built with React Router-driven flow — a start screen where the player sets a custom word or phrase (with a show/hide toggle since the word is entered by a second player), and a play screen with a masked-word display and an on-screen A–Z keyboard.</p>
-        <p>Guessed letters are tracked in state and colour-coded live — correct guesses turn green, wrong ones turn red and get disabled — while an SVG hangman figure builds up stroke by stroke with each wrong guess, driven off the same guess count as the rest of the game logic.</p>
-        <div class="stack">
-          <span>React</span><span>React Router</span><span>Tailwind CSS</span><span>Vite</span><span>SVG</span>
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Razorpay</span><span>Cloudinary</span><span>Gemini API</span>
         </div>
       </div>
 
@@ -397,10 +411,30 @@
             <a class="proj-link" href="https://github.com/Bhallachirag/ai-study-assistant" target="_blank">View repo ↗</a>
           </div>
         </div>
-        <p>A RAG-based study app — upload PDFs and ask grounded questions about them instead of scrolling through pages. Uploaded PDFs are queued to a background worker (Redis + BullMQ) that chunks the text, generates embeddings with Gemini's <code>text-embedding-004</code>, and stores them in MongoDB Atlas Vector Search, keeping the upload request itself fast instead of blocking on processing.</p>
-        <p>A question gets embedded, matched against a user's own documents via vector similarity, and answered by Gemini 2.0 Flash through a LangChain retrieval chain, streamed back token-by-token with page-number citations pointing at the source PDF. On top of the core Q&amp;A, it can also turn a document into an AI-generated quiz with scoring, or flashcards that follow SM-2 spaced repetition — with a progress dashboard that tracks weak topics across everything a user has studied.</p>
+        <ul class="proj-bullets">
+          <li>Architected a full-stack RAG-based study assistant using <strong>React.js, Node.js, Express.js, and LangChain</strong> integrated with <strong>Google Gemini 2.0 Flash LLM</strong> for intelligent query answering.</li>
+          <li>Implemented background PDF document ingestion and chunking using <strong>Redis and BullMQ</strong>, storing vector embeddings in <strong>MongoDB Atlas Vector Search</strong> with metadata filtering.</li>
+          <li>Engineered conversational AI workflows featuring streaming LLM responses, source page citations, automated AI quiz generation, and spaced repetition flashcards.</li>
+        </ul>
         <div class="stack">
-          <span>React</span><span>Node.js</span><span>Express.js</span><span>MongoDB Atlas Vector Search</span><span>LangChain</span><span>Gemini API</span><span>Redis / BullMQ</span><span>JWT</span>
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB Atlas Vector Search</span><span>LangChain</span><span>Gemini API</span><span>Redis</span><span>BullMQ</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h3>Hangman Game</h3>
+          <div class="proj-link-group">
+            <a class="proj-link live-link" href="https://hangmangame-phi.vercel.app/start" target="_blank">Live ↗</a>
+            <a class="proj-link" href="https://github.com/Bhallachirag/HangmanGame" target="_blank">View repo ↗</a>
+          </div>
+        </div>
+        <ul class="proj-bullets">
+          <li>Classic Hangman built with <strong>React &amp; React Router</strong>-driven flow — features a start screen for custom word/phrase setup and a play screen with masked-word display and an on-screen A–Z keyboard.</li>
+          <li>Guessed letters are tracked in state and color-coded live (correct turn green, wrong turn red and disabled) while an <strong>SVG hangman figure</strong> builds up stroke by stroke with each wrong guess.</li>
+        </ul>
+        <div class="stack">
+          <span>React</span><span>React Router</span><span>Tailwind CSS</span><span>Vite</span><span>SVG</span>
         </div>
       </div>
     </div>
@@ -417,31 +451,23 @@
     <div class="skill-grid">
       <div class="skill-group">
         <div class="g-label">Languages</div>
-        <div class="g-items"><span>Python</span><span>C/C++</span><span>SQL</span><span>JavaScript</span><span>HTML/CSS</span></div>
+        <div class="g-items"><span>C/C++</span><span>Python</span><span>JavaScript (ES6+)</span><span>SQL</span><span>HTML5/CSS3</span></div>
       </div>
       <div class="skill-group">
-        <div class="g-label">Databases &amp; Cloud</div>
-        <div class="g-items"><span>PostgreSQL</span><span>MongoDB</span><span>MongoDB Atlas Vector Search</span><span>MySQL</span><span>Redis</span><span>GCP</span><span>AWS</span></div>
+        <div class="g-label">Databases &amp; Vector Tools</div>
+        <div class="g-items"><span>MongoDB</span><span>MongoDB Atlas Vector Search</span><span>MySQL</span><span>PostgreSQL</span><span>Redis</span><span>BullMQ</span></div>
       </div>
       <div class="skill-group">
-        <div class="g-label">AI / RAG</div>
-        <div class="g-items"><span>LangChain</span><span>Google Gemini API</span><span>RAG Pipelines</span><span>Embeddings</span><span>Vector Search</span><span>BullMQ</span></div>
+        <div class="g-label">Frameworks &amp; AI</div>
+        <div class="g-items"><span>React.js</span><span>Node.js</span><span>Express.js</span><span>LangChain</span><span>Prisma ORM</span><span>Socket.io</span><span>Tailwind CSS</span></div>
       </div>
       <div class="skill-group">
-        <div class="g-label">Frameworks &amp; Libraries</div>
-        <div class="g-items"><span>Node.js</span><span>Express.js</span><span>React.js</span><span>Prisma ORM</span><span>Mongoose</span><span>Socket.io</span><span>Tailwind CSS</span><span>EJS</span></div>
+        <div class="g-label">Developer Tools &amp; Cloud</div>
+        <div class="g-items"><span>Git</span><span>GitHub</span><span>Postman</span><span>Docker</span><span>Vercel</span><span>Render</span><span>Google Cloud Platform (GCP)</span></div>
       </div>
       <div class="skill-group">
-        <div class="g-label">Real-time &amp; APIs</div>
-        <div class="g-items"><span>Agora SDK</span><span>Socket.io</span><span>Razorpay</span><span>REST APIs</span><span>WebSockets</span><span>JWT</span></div>
-      </div>
-      <div class="skill-group">
-        <div class="g-label">Developer Tools</div>
-        <div class="g-items"><span>Git</span><span>GitHub</span><span>Docker</span><span>VS Code</span><span>Postman</span><span>Vite</span><span>Vercel</span><span>Render</span></div>
-      </div>
-      <div class="skill-group">
-        <div class="g-label">Core Subjects</div>
-        <div class="g-items"><span>DSA</span><span>DBMS</span><span>Computer Networks</span><span>OOPS</span><span>Operating Systems</span></div>
+        <div class="g-label">Core Concepts</div>
+        <div class="g-items"><span>RAG Pipelines</span><span>Vector Embeddings</span><span>LLM Integration</span><span>REST APIs</span><span>WebSockets</span><span>Microservices</span><span>MVC</span><span>RBAC</span><span>JWT</span><span>DSA</span><span>DBMS</span><span>OOP</span><span>OS</span><span>CN</span></div>
       </div>
     </div>
   </section>
@@ -450,23 +476,23 @@
   <section>
     <div class="sec-head">
       <span class="tag">04</span>
-      <h2>Achievements</h2>
+      <h2>Coding Profiles &amp; Achievements</h2>
       <div class="rule"></div>
     </div>
     <div class="ach-list">
       <div class="ach">
-        <div class="ach-left"><span class="ach-badge">Knight · 1869</span><span class="ach-text">Solved <strong>400+</strong> DSA problems on LeetCode</span></div>
+        <div class="ach-left"><span class="ach-badge">Knight · 1869</span><span class="ach-text"><strong>LeetCode:</strong> Solved <strong>400+</strong> DSA problems.</span></div>
         <a class="ach-link" href="https://leetcode.com/u/chiragbhalla73/" target="_blank">Profile ↗</a>
       </div>
       <div class="ach">
-        <div class="ach-left"><span class="ach-badge">Codolio</span><span class="ach-text">Solved <strong>700+</strong> DSA problems across LeetCode, Codeforces &amp; CodeChef</span></div>
+        <div class="ach-left"><span class="ach-badge">Codolio</span><span class="ach-text"><strong>Codolio:</strong> Solved <strong>700+</strong> DSA problems across LeetCode, Codeforces, CodeChef &amp; GeeksforGeeks.</span></div>
         <a class="ach-link" href="https://codolio.com/profile/chiragbhalla" target="_blank">Profile ↗</a>
       </div>
       <div class="ach">
-        <div class="ach-left"><span class="ach-badge">Rank 10</span><span class="ach-text">IIIT Ranchi Intra-College Competitive Programming Contest <strong>(team of 3)</strong></span></div>
+        <div class="ach-left"><span class="ach-badge">Rank 2</span><span class="ach-text">Led a team to <strong>2nd Place</strong> in the IIIT Ranchi internal selection hackathon for <strong>SIH 2025</strong>.</span></div>
       </div>
       <div class="ach">
-        <div class="ach-left"><span class="ach-badge">Rank 2</span><span class="ach-text">IIIT Ranchi internal selection hackathon for <strong>SIH 2025</strong> — team lead</span></div>
+        <div class="ach-left"><span class="ach-badge">Rank 10</span><span class="ach-text">Ranked <strong>10th</strong> (team of 3) in IIIT Ranchi Intra-College Competitive Programming Contest.</span></div>
       </div>
     </div>
   </section>
@@ -477,6 +503,7 @@
     <p>Open to internships and full-time roles in backend and full-stack engineering. Fastest way to reach me is email.</p>
     <div class="cta-row">
       <a class="btn primary" href="mailto:chiragbhalla.dev@gmail.com">chiragbhalla.dev@gmail.com</a>
+      <a class="btn ghost" href="Chirag_Bhalla_Resume.pdf" target="_blank" style="border-color:var(--accent);color:var(--accent);background:var(--accent-bg);font-weight:600;">📄 View Resume PDF ↗</a>
       <a class="btn ghost" href="tel:+919140358239">+91 91403 58239</a>
     </div>
   </section>
